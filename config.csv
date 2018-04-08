@@ -1,0 +1,2 @@
+HEADER, SCALING FACTOR, OFFSET (applied before multiplication), final unit (ex: newtons)
+PT-N2-220,700,-0.5,PSI
