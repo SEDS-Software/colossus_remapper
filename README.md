@@ -10,3 +10,9 @@ You put in each row of the config file the header, the scale, the offset applied
 Place the csv file in the directory, edit the config.csv file to your what you need
 
 `python remapper.py your_data.csv`
+
+
+#### Requirements
+
+numpy and pandas
+`pip install numpy pandas`
