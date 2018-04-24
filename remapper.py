@@ -2,12 +2,13 @@ import pandas as pd
 import argparse
 import numpy
 import sys
+from io import StringIO
 
 if(len(sys.argv) != 2):
     print("\n\tPlease enter the path of the csv as the only arguement\n")
     exit(1)
 
-config = pd.read_csv("./config.csv", header=None)
+config = pd.read_csv("./config.csv", header=None, engine='python')
 config.drop([0], inplace=True)
 
 config_dict = {}
@@ -16,7 +17,13 @@ for index, row in config.iterrows():
     config_dict[row[0]] = list(map(float, temp))
     config_dict[row[0]].append(row[3])
 
-df = pd.read_csv(sys.argv[1])
+dataFile = open(sys.argv[1], "r", errors="replace")
+
+print("Loading csv into memory...")
+
+df = pd.read_csv(dataFile, dtype=object)
+
+print("Running Transformations...")
 
 units = df.loc[0]
 date = df.loc[:, 'Unnamed: 0']
@@ -37,6 +44,9 @@ for num, column in enumerate(list(df.columns[2:])):
 df['Unnamed: 0'] = date
 df['Unnamed: 1'] = time
 
-print(df)
+print("Finished transformations, outputting into {}_new.csv...".format(
+    sys.argv[1][:-4]))
 
 df.to_csv(sys.argv[1][:-4] + "_new.csv", index=False)
+
+print("All Done")
