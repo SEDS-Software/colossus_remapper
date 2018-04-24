@@ -44,6 +44,10 @@ for num, column in enumerate(list(df.columns[2:])):
 df['Unnamed: 0'] = date
 df['Unnamed: 1'] = time
 
+df.replace(numpy.nan, '', regex=True, inplace=True)
+df.replace(['nan', 'None'], '', inplace=True)
+
+
 print("Finished transformations, outputting into {}_new.csv...".format(
     sys.argv[1][:-4]))
 
