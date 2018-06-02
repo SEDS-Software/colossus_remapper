@@ -16,3 +16,16 @@ Place the csv file in the directory, edit the config.csv file to your what you n
 
 numpy and pandas
 `pip install numpy pandas`
+
+##### Make changes on this repo
+Clone this github repo then make your changes
+
+`git add` all changed files
+
+`git commit -m "a message about the changes"`
+
+`git push`
+
+Then on any device that you are using the server on 
+
+`git pull`
